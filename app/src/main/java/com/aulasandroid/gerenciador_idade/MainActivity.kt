@@ -2,6 +2,7 @@ package com.aulasandroid.gerenciador_idade
 
 import android.R
 import android.R.attr.name
+import android.R.attr.text
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -80,7 +81,7 @@ fun ScreenGerenciadorIdade(modifier: Modifier = Modifier) {
         )
 
         var idade by remember {
-            mutableStateOf(0)
+            mutableStateOf(1)
         }
 
         var maioridade by remember {
@@ -131,11 +132,24 @@ fun ScreenGerenciadorIdade(modifier: Modifier = Modifier) {
             }
         }
 
+        when (idade){
+            in 1 .. 17 -> maioridade = "MENOR"
+            in 18 .. 180 -> maioridade = "MAIOR"
+            else        ->  if(idade <= 0) {
+                maioridade = "MENOR"
+                idade++
+            } else {
+                maioridade = "MAIOR"
+                idade--
+            }
+        }
+
         if(idade >= 18) {
             maioridade = "MAIOR"
         } else {
             maioridade = "MENOR"
         }
+
 
         Text(
             text = "Você é $maioridade de idade",
