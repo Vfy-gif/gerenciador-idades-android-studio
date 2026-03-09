@@ -135,19 +135,14 @@ fun ScreenGerenciadorIdade(modifier: Modifier = Modifier) {
         when (idade){
             in 1 .. 17 -> maioridade = "MENOR"
             in 18 .. 180 -> maioridade = "MAIOR"
-            else        ->  if(idade <= 0) {
+            else        ->
+                if(idade <= 0) {
                 maioridade = "MENOR"
                 idade++
             } else {
                 maioridade = "MAIOR"
                 idade--
             }
-        }
-
-        if(idade >= 18) {
-            maioridade = "MAIOR"
-        } else {
-            maioridade = "MENOR"
         }
 
 
